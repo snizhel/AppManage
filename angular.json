@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AppManage"
+    }
+  },
+  "defaultProject": "AppManage",
+  "cli": {
+    "analytics": "23d8f701-f8ff-425a-805b-d8cd1cc738ff"
+  }
 }
