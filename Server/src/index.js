@@ -4,7 +4,9 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../key.json");
 const { query } = require("express");
 const databaseURL = "https://slab-100df.firebaseio.com/";
+
 const db = admin.firestore;
+
 function init() {
   try {
     admin.initializeApp({
@@ -27,15 +29,30 @@ init();
 
 app.get("/user", async (req, res) => {
   try {
-    const itemSnapshot = await admin.firestore().collection("user").get();
-    const user = [];
-    itemSnapshot.forEach((doc) => {
-      user.push({
-        id: doc.id,
-        data: doc.data(),
+    let user = [];
+
+    await admin
+      .firestore()
+      .collection("user")
+      .get()
+      .then(async (querySnapshot) => {
+        await querySnapshot.forEach(async (doc) => {
+          await user.push({ id: doc.id, data: doc.data() });
+        });
+        console.log(user);
       });
-    });
-    res.json(user);
+
+    // const user = [];
+    // itemSnapshot.forEach((doc) => {
+    //   user.push(
+    //     {
+    //       id: doc.id,
+    //       data: doc.data(),
+    //     }
+    //     // id: doc.id,
+    //   );
+    // });
+    res.send(user);
   } catch (e) {
     message = "Error";
   }
@@ -52,22 +69,23 @@ app.get("/user/id", async (req, res) => {
   }
 });
 
-app.post("/", async (req, res) => {
-  const { id, title, status, number, price, img } = req.body;
+app.get("/test", (req, res) => {
+  res.send("test server");
+  console.log("tsst");
+});
+
+app.post("/create", async (req, res) => {
+  const { title, status, number, price } = req.body;
   const data = {
-    id: id,
     title: title,
     status: status,
     number: number,
     price: price,
-    img: img,
   };
+  console.log(data);
   try {
-    let doc = await admin
-      .firestore()
-      .doc("user/" + data.id)
-      .create(data);
-    if ((await doc.get()).exists) {
+    let doc = await admin.firestore().collection("user").doc().create(data);
+    if (await doc.get("/user/id").exists()) {
       return res.status(200).send;
     } else {
       doc.set(data);
@@ -79,23 +97,17 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.put("/", async (req, res, next) => {
-  const { id, title, number, price, status, img } = req.body;
+app.put("/update", async (req, res) => {
+  const { title, number, price, status } = req.body;
   const data = {
-    id: id,
     title: title,
     status: status,
     number: number,
     price: price,
-    img: img,
   };
   async () => {
     try {
-      await admin
-        .firestore()
-        .collection("user")
-        .doc(id.toString())
-        .update(data);
+      await admin.firestore().collection("user").doc().update(data);
       return res.send("update success");
     } catch (error) {
       console.log(error);
@@ -104,8 +116,12 @@ app.put("/", async (req, res, next) => {
   };
 });
 
-app.delete("/", async (req, res) => {
+app.delete("/delete", async (req, res) => {
   const { id } = req.query;
-  let temp = await admin.firestore().collection("user").doc(id).delete();
-  res.send("item deleted");
+  try {
+    await admin.firestore().collection("user").doc(id).delete();
+    res.send("item deleted");
+  } catch (error) {
+    console.log("item error");
+  }
 });

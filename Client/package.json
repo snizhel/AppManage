@@ -25,6 +25,7 @@
     "bootstrap": "^5.0.1",
     "chart.js": "^3.3.2",
     "firebase": "^8.6.7",
+    "httpclient": "^0.1.0",
     "ng2-charts": "^2.4.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

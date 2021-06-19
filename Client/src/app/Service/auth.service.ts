@@ -18,7 +18,7 @@ export class AuthService {
         this.authState = user;
         this.user = user;
         this.openNavBar();
-        this.router.navigate(['admin-layout']);
+        this.router.navigate(['dashboard']);
       } else {
         this.disableNavBar();
       }

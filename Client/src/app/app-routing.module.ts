@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserProfileComponent } from '../app/user-profile/user-profile.component';
 import { GuardService as AuthGuard } from '../../src/app/Service/guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 const routes: Routes = [
   {
     path: 'register',
@@ -13,12 +15,17 @@ const routes: Routes = [
     component: UserProfileComponent,
   },
   {
-    path: 'admin-layout',
-    loadChildren: () =>
-      import('./admin-layout/admin-layout.module').then(
-        (m) => m.AdminLayoutModule
-      ),
+    path: 'dashboard',
+    component: DashboardComponent,
   },
+  // {
+  //   path: '**',
+  //   loadChildren: () =>
+  //     import('./admin-layout/admin-layout.module').then(
+  //       (m) => m.AdminLayoutModule
+  //     ),
+  // },
+
   {
     path: '**',
     redirectTo: 'login',

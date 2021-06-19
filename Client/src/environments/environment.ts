@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  endpoint: 'http://127.0.0.1:8080/',
   firebase: {
     apiKey: 'AIzaSyDp3vXSRBfm0mq5p4b3raQhiXUzhFJE5r8',
     authDomain: 'slab-100df.firebaseapp.com',

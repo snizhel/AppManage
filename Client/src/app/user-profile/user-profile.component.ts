@@ -3,6 +3,7 @@ import { AuthService } from '../Service/auth.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

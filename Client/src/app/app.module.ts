@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,9 +11,19 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from '../app/navbar/navbar.component';
+import { SidebarComponent } from '../app/sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, UserProfileComponent],
+  declarations: [
+    AppComponent,
+    UserProfileComponent,
+    NavbarComponent,
+    SidebarComponent,
+    DashboardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,6 +32,8 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

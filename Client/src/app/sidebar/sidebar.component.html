@@ -1,4 +1,4 @@
-<nav class="side-navbar">
+<nav class="side-navbar" *ngIf="this.auth.user">
   <div class="sidebar-header d-flex align-items-center">
     <div *ngIf="this.auth.user" class="avatar"><img src="{{this.auth.user.photoURL}}" alt="..."
         class="img-fluid rounded-circle">
@@ -10,7 +10,7 @@
   <hr>
   <!-- Sidebar Navidation Menus-->
   <ul class="list-unstyled">
-    <li class="active"> <a routerLink="/"><i class="icon-home"></i>Home</a></li>
+    <li class="active"> <a routerLink="/dashboard"><i class="icon-home"></i>Home</a></li>
     <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Apps </a>
       <ul id="apps" class="collapse list-unstyled">
         <li><a href="calendar.html">Calendar</a></li>
