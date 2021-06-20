@@ -21,24 +21,34 @@ export class ItemService {
     this.List = fire.collection<any>('user').valueChanges({ idField: 'idDoc' });
   }
 
-  // getAllItems(): Observable<Item[]> {
-  //   return this.http.get<Item[]>(environment.endpoint + 'user');
-  // }
-
   async getAllItem() {
     return this.List;
   }
 
-  getProduct(id: string): Observable<any> {
-    return this.http.get<Item>(environment.endpoint + 'user/id' + id);
+  async getProduct(id: any) {
+    let result = await this.http
+      .get<Item>(environment.endpoint + 'user/id?id=' + id)
+      .toPromise()
+      .then((data) => {
+        return data;
+      });
+    // console.log(result);
+    return result;
   }
 
   addProduct(item: Item): Observable<any> {
     return this.http.post(environment.endpoint + 'create', item);
   }
 
-  updateProduct(id: string, item: Item): Observable<any> {
-    return this.http.put<Item>(environment.endpoint + 'update' + id, item);
+  updateProduct(id: string, item: any) {
+    console.log(id);
+    this.http.put(environment.endpoint + 'update', {
+      id: id,
+      title: item.title2,
+      price: item.price2,
+      number: item.number2,
+      status: item.status2,
+    });
   }
 
   deleteProduct(id: any): Observable<any> {

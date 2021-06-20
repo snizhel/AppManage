@@ -98,22 +98,20 @@ app.post("/create", async (req, res) => {
 });
 
 app.put("/update", async (req, res) => {
-  const { title, number, price, status } = req.body;
-  const data = {
-    title: title,
-    status: status,
-    number: number,
-    price: price,
-  };
-  async () => {
-    try {
-      await admin.firestore().collection("user").doc().update(data);
-      return res.send("update success");
-    } catch (error) {
-      console.log(error);
-      return res.status(500).send(error);
-    }
-  };
+  const { id, title, number, price, status } = req.body;
+  console.log(id, title, number, price, status);
+  try {
+    await admin.firestore().collection("user").doc(id).update({
+      title: title,
+      status: status,
+      number: number,
+      price: price,
+    });
+    return res.send("update success");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
 });
 
 app.delete("/delete", async (req, res) => {

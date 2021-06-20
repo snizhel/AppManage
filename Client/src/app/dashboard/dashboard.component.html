@@ -186,7 +186,7 @@
         <table class="table table-hover">
           <thead>
             <div class="dropdown pull-right menu-sett-card">
-              <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+              <!-- <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-ellipsis-v men"></i>
               </a>
@@ -200,7 +200,7 @@
                 <li>
                   <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
                 </li>
-              </ul>
+              </ul> -->
 
             </div>
             <tr>
@@ -225,7 +225,21 @@
                     aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </td>
-              <button (click)="deleteItem(item.idDoc)">Delete</button>
+              <!-- <button (click)="deleteItem(item.idDoc)">Delete</button> -->
+              <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-v men"></i>
+              </a>
+              <ul aria-labelledby="notifications" class="dropdown-menu">
+                <li>
+                  <a rel="nofollow" class="dropdown-item nav-link" data-toggle="modal" (click)="editProduct(item.idDoc)"
+                    data-target="#exampleModal">Edit</a>
+                </li>
+                <li>
+                  <a rel="nofollow" (click)="deleteItem(item.idDoc)" class="dropdown-item nav-link">Delete</a>
+                </li>
+
+              </ul>
             </tr>
 
           </tbody>
@@ -235,7 +249,42 @@
 
   </div>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="rfItem2" (ngSubmit)="SaveChanges(this.rfItem2)">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Title:</label>
+            <textarea value="{{this.item2.title}}" class="form-control" id="message-text"
+              formControlName="title2"></textarea>
+            <label for="message-text" class="col-form-label">Number:</label>
+            <textarea value="{{this.item2.number}}" class="form-control" id="message-text"
+              formControlName="number2"></textarea>
 
+            <label for="message-text" class="col-form-label">Price:</label>
+            <textarea value="{{this.item2.price}}" class="form-control" id="message-text"
+              formControlName="price2"></textarea>
+            <label for="message-text" class="col-form-label">Status:</label>
+            <textarea value="{{this.item2.status}}" class="form-control" id="message-text"
+              formControlName="status2"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
 
 
   <!--***** FOOTER *****-->

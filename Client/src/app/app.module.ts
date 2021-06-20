@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../app/navbar/navbar.component';
 import { SidebarComponent } from '../app/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     DashboardComponent,
+    EditItemComponent,
   ],
   imports: [
     BrowserModule,

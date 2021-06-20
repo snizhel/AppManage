@@ -12,20 +12,34 @@ import { Item } from '../model/item.model';
 })
 export class DashboardComponent implements OnInit {
   rfItem: FormGroup;
+  rfItem2: FormGroup;
+  item2: any;
   itemsList: any[] = [];
+
   constructor(
     public itemservice: ItemService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.getProducts();
+  }
 
   ngOnInit(): void {
     this.getProducts();
+    this.item2 = { tittle: '', number: '', price: '', status: '' };
+
     this.rfItem = new FormGroup({
-      title: new FormControl(),
-      status: new FormControl(),
-      number: new FormControl(),
-      price: new FormControl(),
+      title: new FormControl(''),
+      status: new FormControl(''),
+      number: new FormControl(''),
+      price: new FormControl(''),
     });
+    this.rfItem2 = new FormGroup({
+      title2: new FormControl(''),
+      status2: new FormControl(''),
+      number2: new FormControl(''),
+      price2: new FormControl(''),
+    });
+    // this.item2 = { tittle: '', number: '', price: '', status: '' };
   }
 
   upload(event: any) {
@@ -60,5 +74,32 @@ export class DashboardComponent implements OnInit {
     });
 
     console.log(this.rfItem.value);
+  }
+
+  public async getItem(id: any) {
+    return await this.itemservice.getProduct(id);
+  }
+
+  public async editProduct(id: any) {
+    console.log(id);
+    this.item2 = await this.getItem(id);
+  }
+  public async SaveChanges(id: any) {
+    this.rfItem2.patchValue({
+      id: id,
+      title2: this.rfItem2.value.title2,
+      number2: this.rfItem2.value.number2,
+      price2: this.rfItem2.value.price2,
+      status2: this.rfItem2.value.status2,
+    });
+
+    // this.rfItem = new FormGroup({
+    //   title: new FormControl(),
+    //   status: new FormControl(),
+    //   number: new FormControl(),
+    //   price: new FormControl(),
+    // });
+    console.log(this.rfItem2.value.price2);
+    return this.itemservice.updateProduct(id, this.rfItem2.value);
   }
 }
