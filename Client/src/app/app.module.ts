@@ -16,6 +16,7 @@ import { NavbarComponent } from '../app/navbar/navbar.component';
 import { SidebarComponent } from '../app/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditItemComponent } from './edit-item/edit-item.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     SidebarComponent,
     DashboardComponent,
     EditItemComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,

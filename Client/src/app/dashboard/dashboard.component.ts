@@ -82,16 +82,37 @@ export class DashboardComponent implements OnInit {
 
   public async editProduct(id: any) {
     console.log(id);
-    this.item2 = await this.getItem(id);
+    let data = await this.getItem(id);
+    this.item2 = {
+      idDoc: id,
+      ...data,
+    };
   }
   public async SaveChanges(id: any) {
-    this.rfItem2.patchValue({
-      id: id,
+    console.log(this.item2);
+    console.log(this.itemsList);
+    let data = {
+      idDoc: this.item2.idDoc,
       title2: this.rfItem2.value.title2,
       number2: this.rfItem2.value.number2,
       price2: this.rfItem2.value.price2,
       status2: this.rfItem2.value.status2,
+    };
+    this.rfItem2.patchValue(data);
+    let index = this.itemsList.findIndex((item) => {
+      if (item.idDoc == this.item2.idDoc) {
+        return true;
+      }
+      return false;
     });
+    this.itemsList[index] = {
+      idDoc: this.item2.idDoc,
+      title: this.rfItem2.value.title2,
+      number: this.rfItem2.value.number2,
+      price: this.rfItem2.value.price2,
+      status: this.rfItem2.value.status2,
+    };
+    console.log(this.itemsList);
 
     // this.rfItem = new FormGroup({
     //   title: new FormControl(),
