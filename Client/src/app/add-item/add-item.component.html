@@ -1,1 +1,47 @@
-<p>add-item works!</p>
+<div>
+  <form novalidate (ngSubmit)="onSubmit()" [formGroup]="rfItem" class="row justify-content-md-center">
+    <button (click)="input.click()">
+      <input #input nv-file-select type="file" (change)="upload($event)" accept="*.png.jpg" />
+    </button>
+    <div class="col-md-8">
+      <div class="form-group row">
+
+        <label for="example-text-input" class="col-2 col-form-label">
+          Title:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="text" id="example-text-input" formControlName="title">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-email-input" class="col-2 col-form-label">
+          Status
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="status" id="example-email-input" formControlName="status" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-tel-input" class="col-2 col-form-label">
+          Number:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="Number" id="example-tel-input" formControlName="number" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-tel-input" class="col-2 col-form-label">
+          Price:
+        </label>
+        <div class="col-10">
+          <input class="form-control" type="Number" id="example-tel-input" formControlName="price" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-10 offset-2">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

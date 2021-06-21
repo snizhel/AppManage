@@ -25,30 +25,39 @@ export class ItemService {
     return this.List;
   }
 
-  async getProduct(id: any) {
-    let result = await this.http
-      .get<Item>(environment.endpoint + 'user/id?id=' + id)
-      .toPromise()
-      .then((data) => {
-        return data;
-      });
-    // console.log(result);
-    return result;
+  // async getProduct(id: any) {
+  //   let result = await this.http
+  //     .get<Item>(environment.endpoint + 'user/id?id=' + id)
+  //     .toPromise()
+  //     .then((data) => {
+  //       return data;
+  //     });
+  //   // console.log(result);
+  //   return result;
+  // }
+
+  getProduct(id: any): Observable<Item> {
+    const url = `${environment.endpoint + 'user/id?id='}/${id}`;
+    return this.http.get<Item>(url);
   }
 
   addProduct(item: Item): Observable<any> {
     return this.http.post(environment.endpoint + 'create', item);
   }
 
-  updateProduct(id: string, item: any) {
-    console.log(id);
-    this.http.put(environment.endpoint + 'update', {
-      id: id,
-      title: item.title2,
-      price: item.price2,
-      number: item.number2,
-      status: item.status2,
-    });
+  // updateProduct(id: string, item: any) {
+  //   console.log(id);
+  //   this.http.put(environment.endpoint + 'update', {
+  //     id: id,
+  //     title: item.title,
+  //     price: item.price,
+  //     number: item.number,
+  //     status: item.status,
+  //   });
+  // }
+
+  updateProduct(item: any, id: string): Observable<any> {
+    return this.http.put(environment.endpoint + 'update' + id, item);
   }
 
   deleteProduct(id: any): Observable<any> {

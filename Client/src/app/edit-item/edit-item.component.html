@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -7,21 +7,67 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="form-group">
-        <label for="message-text" class="col-form-label">Title:</label>
-        <textarea class="form-control" id="message-text">{{this.item2.title}}</textarea>
-        <label for="message-text" class="col-form-label">Number:</label>
-        <textarea class="form-control" id="message-text">{{this.item2.number}}</textarea>
-        <label for="message-text" class="col-form-label">Price:</label>
-        <textarea class="form-control" id="message-text">{{this.item2.price}}</textarea>
-        <label for="message-text" class="col-form-label">Status:</label>
-        <textarea class="form-control" id="message-text">{{this.item2.status}}</textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="SaveChanges()">Save changes</button>
-      </div>
+      </div> -->
+<!-- <form [formGroup]="rfItem" (ngSubmit)="SaveChanges(1)">
+  <div class="form-group">
+    <label for="message-text" class="col-form-label">Title:</label>
+    <input value="{{this.item2.title}}" class="form-control" id="message-text" formControlName="title2" />
+    <label for="message-text" class="col-form-label">Number:</label>
+    <input value="{{this.item2.number}}" class="form-control" id="message-text" formControlName="number2" />
+
+    <label for="message-text" class="col-form-label">Price:</label>
+    <input value="{{this.item2.price}}" class="form-control" id="message-text" formControlName="price2" />
+    <label for="message-text" class="col-form-label">Status:</label>
+    <input value="{{this.item2.status}}" class="form-control" id="message-text" formControlName="status2" />
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+</form> -->
+
+<!--
     </div>
   </div>
+</div> -->
+
+
+
+
+
+
+<div class="form" style="width:1000px">
+  <form [formGroup]="rfItem" (ngSubmit)="onFormSubmit()">
+    <h1>Edit Item</h1>
+    <div class="form-group">
+      <label for="message-text" class="col-form-label">Title:</label>
+      <input formControlName="title" type="text" class="form-control" id="message-text" />
+      <label for="message-text" class="col-form-label">Number:</label>
+      <input formControlName="number" class="form-control" id="message-text" />
+
+      <label for="message-text" class="col-form-label">Price:</label>
+      <input formControlName="price" class="form-control" id="message-text" />
+      <label for="message-text" class="col-form-label">Status:</label>
+      <input formControlName="status" class="form-control" id="message-text" />
+    </div>
+    <div class="modal-footer">
+
+      <button title="Login">Save Changes</button>
+    </div>
+  </form>
 </div>
+
+
+
+
+
+
+<!--
+<div class="form">
+  <form action="" method="">
+    <h1>Login Form</h1>
+    <input type="text" placeholder="UserName" title="Your Username" />
+    <input type="password" placeholder="Password" title="Your Password" />
+    <button title="Login">Login</button>
+  </form>
+</div> -->

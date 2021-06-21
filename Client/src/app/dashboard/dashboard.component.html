@@ -92,56 +92,7 @@
     </div> -->
 
 
-    <div>
-
-
-      <form novalidate (ngSubmit)="onSubmit()" [formGroup]="rfItem" class="row justify-content-md-center">
-        <button (click)="input.click()">
-          <input #input nv-file-select type="file" (change)="upload($event)" accept="*.png.jpg" />
-        </button>
-        <div class="col-md-8">
-          <div class="form-group row">
-
-            <label for="example-text-input" class="col-2 col-form-label">
-              Title:
-            </label>
-            <div class="col-10">
-              <input class="form-control" type="text" id="example-text-input" formControlName="title">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="example-email-input" class="col-2 col-form-label">
-              Status
-            </label>
-            <div class="col-10">
-              <input class="form-control" type="status" id="example-email-input" formControlName="status"
-                placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="example-tel-input" class="col-2 col-form-label">
-              Number:
-            </label>
-            <div class="col-10">
-              <input class="form-control" type="Number" id="example-tel-input" formControlName="number" placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="example-tel-input" class="col-2 col-form-label">
-              Price:
-            </label>
-            <div class="col-10">
-              <input class="form-control" type="Number" id="example-tel-input" formControlName="price" placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-10 offset-2">
-              <button class="btn btn-primary" type="submit">Submit</button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+    <app-add-item></app-add-item>
 
 
     <!-- <div class="col-md-4">
@@ -186,34 +137,20 @@
         <table class="table table-hover">
           <thead>
             <div class="dropdown pull-right menu-sett-card">
-              <!-- <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-ellipsis-v men"></i>
-              </a>
-              <ul aria-labelledby="notifications" class="dropdown-menu">
-                <li>
-                  <a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>
-                </li>
-                <li>
-                  <a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>
-                </li>
-                <li>
-                  <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
-                </li>
-              </ul> -->
+              <input class="form-control" type="text" name="search" [(ngModel)]="title" autocomplete="off"
+                (input)="search()" placeholder="Search your item">
 
             </div>
             <tr>
               <th>Product Name</th>
               <th>Number</th>
               <th>Price</th>
-              <!-- <i class="fa fa-ellipsis-v pull-right" ></i> -->
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
 
-            <tr *ngFor="let item of this.itemsList ">
+            <tr *ngFor="let item of this.itemsList">
               <td>{{item.title}}</td>
               <td>{{item.number}}</td>
               <td>{{item.price}}</td>
@@ -232,8 +169,8 @@
               </a>
               <ul aria-labelledby="notifications" class="dropdown-menu">
                 <li>
-                  <a rel="nofollow" class="dropdown-item nav-link" data-toggle="modal" (click)="editProduct(item.idDoc)"
-                    data-target="#exampleModal">Edit</a>
+                  <a rel="nofollow" class="dropdown-item nav-link" data-toggle="modal" data-target="#exampleModal"
+                    (click)="navtoEdit(item.idDoc)">Edit</a>
                 </li>
                 <li>
                   <a rel="nofollow" (click)="deleteItem(item.idDoc)" class="dropdown-item nav-link">Delete</a>
@@ -249,42 +186,8 @@
 
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit form</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form [formGroup]="rfItem2" (ngSubmit)="SaveChanges(1)">
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Title:</label>
-            <textarea value="{{this.item2.title}}" class="form-control" id="message-text"
-              formControlName="title2"></textarea>
-            <label for="message-text" class="col-form-label">Number:</label>
-            <textarea value="{{this.item2.number}}" class="form-control" id="message-text"
-              formControlName="number2"></textarea>
 
-            <label for="message-text" class="col-form-label">Price:</label>
-            <textarea value="{{this.item2.price}}" class="form-control" id="message-text"
-              formControlName="price2"></textarea>
-            <label for="message-text" class="col-form-label">Status:</label>
-            <textarea value="{{this.item2.status}}" class="form-control" id="message-text"
-              formControlName="status2"></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-
-
-      </div>
-    </div>
-  </div>
+  <!-- <app-edit-item></app-edit-item> -->
 
 
   <!--***** FOOTER *****-->
